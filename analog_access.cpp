@@ -63,3 +63,40 @@ bool Analog_In::detach()
   else
     cout<<"No pin Attached\n";
 }
+
+int Analog_In::analogRead()
+{
+  char analog_input[4];
+  char dummy_input[4];
+  if(is_attached)
+    {
+      fd_analog = open(analog_Path,O_RDONLY);
+
+      if(fd_analog < 0)
+        {
+          perror("Can not open file\n");
+          return -1;
+        }
+
+      read(fd_analog,&dummy_input,sizeof(dummy_input));
+      close(fd_analog);
+      fd_analog = open(analog_Path,O_RDONLY);
+
+      if(fd_analog < 0)
+        {
+          perror("Can not open file\n");
+          return -1;
+        }
+
+      read(fd_analog,&analog_input,sizeof(analog_input));
+      close(fd_analog);
+      return atoi(analog_input);
+    }
+
+  else
+    {
+      cout<<"No Pin Attached\n";
+      return -1;
+    }
+
+}
