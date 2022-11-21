@@ -52,3 +52,14 @@ bool Analog_In::attach(unsigned char pin_num)
     }
 }
 
+bool Analog_In::detach()
+{
+  if(is_attached)
+    {
+      is_attached = 0;
+      analog_makeAvailable(analog_pinNum);
+      return 1;
+    }
+  else
+    cout<<"No pin Attached\n";
+}
