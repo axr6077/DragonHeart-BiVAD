@@ -23,4 +23,32 @@ Analog_In::Analog_In()
     }
 }
 
+bool Analog_In::attach(unsigned char pin_num)
+{
+  char analog_input[4];
+  char dummy_input[4];
+
+  if(!is_attached)
+    {
+
+      if(pin_num == '0' || pin_num == '1' || pin_num == '2' || pin_num == '3' || pin_num == '4' || pin_num == '5')
+        {
+          len = snprintf(analog_Path,sizeof(analog_Path),ANALOG_SYSPATH"%c",pin_num);
+          is_attached = 1;
+          analog_pinNum = pin_num;
+          analog_makeUnAvailable(pin_num);
+          return 1;
+        }
+      else
+        {
+          cout<<"Wrong Pin Number\n";
+          return 0;
+        }
+    }
+  else
+    {
+      cout<<"Pin already Attached\n";
+      return 0;
+    }
+}
 
