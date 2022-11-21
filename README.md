@@ -4,3 +4,6 @@ This repository is actively maintained for dev-transactions on the beaglebone bl
 ## Status
 - ADC initilization and mapping pins: Completed
 - ADC Testing with DRV5055: In progress
+
+## Documentation
+Further documentation will be added following continuous dev. Feel free to contact me if you have any questions. 
