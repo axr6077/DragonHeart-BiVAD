@@ -2,14 +2,28 @@
 #include <fstream>
 
 // Constants for the PID control
+/*
+ * Constants for the PID control.
+ * K_P: Proportional gain constant
+ * K_I: Integral gain constant
+ * K_D: Derivative gain constant
+ */
 constexpr double K_P = 1.0;
 constexpr double K_I = 0.1;
 constexpr double K_D = 0.01;
 
+/*
+ * ADC and DAC device files.
+ * These files are used to read from the ADC and write to the DAC on the BeagleBone Black.
+ */
 // ADC and DAC device files
 constexpr char ADC_DEVICE[] = "/dev/adc0";
 constexpr char DAC_DEVICE[] = "/dev/dac0";
 int main() {
+    /*
+     * Open the ADC and DAC device files.
+     * These files are used to read from the ADC and write to the DAC on the BeagleBone Black.
+     */
     std::ifstream adc_file(ADC_DEVICE);
     std::ofstream dac_file(DAC_DEVICE);
     if (!adc_file || !dac_file) {
@@ -17,6 +31,7 @@ int main() {
         return 1;
     }
 
+    // Variables for storing ADC and DAC values, error, and PID control terms
     int adc_value;
     int dac_value;
     double error;
