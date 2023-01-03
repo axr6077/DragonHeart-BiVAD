@@ -1,8 +1,21 @@
+/**
+ * @file pid_control.c
+ * @brief A simple PID control example for the BeagleBone Black using C++
+ *
+ * This program continuously reads from an ADC and outputs to a DAC using the
+ * BeagleBone Black. The program uses a simple PID control algorithm to maintain
+ * a setpoint for the control system.
+ *
+ * @author Ayush Rout
+ * @date 2023/01/02
+ **/
 #include <iostream>
 #include <fstream>
 
 // Constants for the PID control
 /*
+ * @brief Constants for the PID control
+ *
  * Constants for the PID control.
  * K_P: Proportional gain constant
  * K_I: Integral gain constant
@@ -13,6 +26,8 @@ constexpr double K_I = 0.1;
 constexpr double K_D = 0.01;
 
 /*
+ * @brief ADC and DAC device files
+ *
  * ADC and DAC device files.
  * These files are used to read from the ADC and write to the DAC on the BeagleBone Black.
  */
@@ -21,6 +36,8 @@ constexpr char ADC_DEVICE[] = "/dev/adc0";
 constexpr char DAC_DEVICE[] = "/dev/dac0";
 int main() {
     /*
+     * @brief Open the ADC and DAC device files
+     *
      * Open the ADC and DAC device files.
      * These files are used to read from the ADC and write to the DAC on the BeagleBone Black.
      */
@@ -39,6 +56,9 @@ int main() {
     double i_term = 0.0;
     double d_term;
     double control_signal;
+    /**
+     * @brief Setpoint for the control system
+     **/
     double setpoint = 50.0;  // Setpoint for the control system
 
     // Continuously run the PID control loop
